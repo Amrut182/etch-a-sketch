@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    
 }
 
 .Grid {
@@ -9,9 +10,6 @@ h1 {
     border: 1px solid black;
 }
 
-.Grid:hover {
-    background-color: grey;
-}
 #container {
     margin: auto;
     width: 800px;
