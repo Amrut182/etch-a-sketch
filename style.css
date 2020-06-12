@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+
+.Grid {
+    display: inline-grid;
+    height: 48px;
+    width: 48px;
+    border: 1px solid black;
+}
+
+.Grid:hover {
+    background-color: grey;
+}
+#container {
+    margin: auto;
+    width: 800px;
+    height: 800px;
+}
