@@ -5,13 +5,16 @@ h1 {
 
 .Grid {
     display: inline-grid;
-    height: 48px;
-    width: 48px;
+    height: 23px;
+    width: 23px;
     border: 1px solid black;
+}
+
+#btn1 {
 }
 
 #container {
     margin: auto;
-    width: 800px;
-    height: 800px;
+    width: 400px;
+    height: 400px;
 }
