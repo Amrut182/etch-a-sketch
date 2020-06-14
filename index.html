@@ -8,12 +8,12 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <h1>Etch a Sketch</h1>
+        <h1>Etch a Sketch </h1>
+        <div id="container"></div>
         <div id="buttons">
             <button id="btn1">Clear</button>
             <button id="btn2">Make Grid</button>
         </div>
-        <div id="container"></div>
         
         <script>
             const container = document.querySelector('#container');
@@ -41,7 +41,9 @@
                         container.appendChild(div);
                         
                         div.onmouseover = function () {
-                            div.style.backgroundColor = 'black';
+                            // div.style.backgroundColor = '#5F4B8BFF';
+                            div.style.backgroundColor = '#00203FFF';
+                            // div.style.backgroundColor = '#0063B2FF';
                         };
                     }
                 }
@@ -90,7 +92,7 @@
             btn2.addEventListener('click', () => {
                 choice = prompt("Enter the size of grid (1-21)");
                 if(choice > 21) {
-                    choice = prompt("Please Enter between 1 & 21)");
+                    choice = prompt("Please Enter between 1 & 21");
                 }
                 clear();
                 createNextGrid(); //Creates a new grid based on user input
