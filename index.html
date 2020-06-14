@@ -9,21 +9,57 @@
     </head>
     <body>
         <h1>Etch a Sketch</h1>
+        <button id="btn1">Clear</button>
         <div id="container"></div>
         
         <script>
             const container = document.querySelector('#container');
+            const btn1 = document.querySelector('#btn1');
 
-            for(let i = 0; i < 16; i++) {
-                for(let j = 0; j < 16; j++) {
-                    let div = document.createElement('div');
-                    div.className = 'Grid';
-                    container.appendChild(div);
-                    div.onmouseover = function() {
-                        div.style.backgroundColor = 'grey';
+            function createGrid() {
+                for(let i = 0; i < 16; i++) {
+                    for(let j = 0; j < 16; j++) {
+                        let div = document.createElement('div');
+                        div.id ='Grid';
+                        container.appendChild(div);
+
+                        div.onmouseover = function() {
+                            div.style.backgroundColor = 'grey';
+                        }
                     }
                 }
             }
+
+            createGrid();
+
+            btn1.addEventListener('click', () => {
+                //Removing grid
+                for(let i = 0; i < 16; i++) {
+                    for(let j = 0; j < 16; j++) {
+                        let element = document.getElementById('Grid');
+                        element.parentNode.removeChild(element);
+                    }
+                }
+
+                // if (container.classList.contains("Grid")) {
+                //     container.classList.remove("Grid");
+                // }
+                let container = document.createElement('div'); 
+
+                // let choice = prompt("Enter the size of grid");
+                // for(let i = 0; i < choice; i++) {
+                //     for(let j = 0; j < choice; j++) {
+                //         let div = document.createElement('div');
+                //         div.className = 'Grid';
+                //         container.appendChild(div);
+
+                //         div.onmouseover = function() {
+                //             div.style.backgroundColor = 'grey';
+                //         }
+                //     }
+                // }
+            });
+
         </script>
     </body>
   
