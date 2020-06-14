@@ -15,12 +15,23 @@
         <script>
             const container = document.querySelector('#container');
             const btn1 = document.querySelector('#btn1');
+            let choice;
+            let clickCounter = 0;
 
-            function createGrid() {
-                for(let i = 0; i < 16; i++) {
-                    for(let j = 0; j < 16; j++) {
+            function createGrid(item) {
+                for(let i = 0; i < item; i++) {
+                    for(let j = 0; j < item; j++) {
                         let div = document.createElement('div');
-                        div.id ='Grid';
+                        div.id = 'Grid';
+
+                        if(item < 22) {
+                            div.style.height = Math.floor(400/item) - 2 ;
+                            div.style.width = Math.floor(400/item) - 2;
+                        }
+                        else {
+                            break;
+                        }
+
                         container.appendChild(div);
 
                         div.onmouseover = function() {
@@ -30,38 +41,45 @@
                 }
             }
 
-            createGrid();
-
-            btn1.addEventListener('click', () => {
-                //Removing grid
-                for(let i = 0; i < 16; i++) {
-                    for(let j = 0; j < 16; j++) {
+            function clearGrid(item) {
+                for(let i = 0; i < item; i++) {
+                    for(let j = 0; j < item; j++) {
                         let element = document.getElementById('Grid');
                         element.parentNode.removeChild(element);
                     }
                 }
+            }
 
-                // if (container.classList.contains("Grid")) {
-                //     container.classList.remove("Grid");
-                // }
-                let container = document.createElement('div'); 
+            function createInitialGrid() {
+                createGrid(16);
+            }
 
-                // let choice = prompt("Enter the size of grid");
-                // for(let i = 0; i < choice; i++) {
-                //     for(let j = 0; j < choice; j++) {
-                //         let div = document.createElement('div');
-                //         div.className = 'Grid';
-                //         container.appendChild(div);
+            function clearInitialGrid() {
+                clearGrid(16);
+            }
 
-                //         div.onmouseover = function() {
-                //             div.style.backgroundColor = 'grey';
-                //         }
-                //     }
-                // }
+            function createNextGrid() {
+                choice = prompt("Enter the size of grid");
+                createGrid(choice);
+            }
+
+            function clear() {
+                if(clickCounter == 0) {
+                    clearInitialGrid();
+                    clickCounter++;
+                }
+                else {
+                    clearGrid(choice); //previous choice needed to clear the previous grid
+                }
+            }
+
+            btn1.addEventListener('click', () => {
+                clear(); //Clears grid on screen
+                createNextGrid(); //Creates a new grid based on user input
             });
+
+            createInitialGrid(); //Creates 16X16 grid 
 
         </script>
     </body>
-  
-
 </html>
