@@ -5,12 +5,10 @@ h1 {
 
 #Grid {
     display: inline-grid;
-    height: 23px;
-    width: 23px;
     border: 1px solid black;
 }
-
 #btn1 {
+
 }
 
 #container {
