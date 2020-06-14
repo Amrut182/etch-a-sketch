@@ -9,14 +9,20 @@
     </head>
     <body>
         <h1>Etch a Sketch</h1>
-        <button id="btn1">Clear</button>
+        <div id="buttons">
+            <button id="btn1">Clear</button>
+            <button id="btn2">Make Grid</button>
+        </div>
         <div id="container"></div>
         
         <script>
             const container = document.querySelector('#container');
             const btn1 = document.querySelector('#btn1');
-            let choice;
+            let choice = 16;
+            let previousChoice = 16;
             let clickCounter = 0;
+
+
 
             function createGrid(item) {
                 for(let i = 0; i < item; i++) {
@@ -25,18 +31,18 @@
                         div.id = 'Grid';
 
                         if(item < 22) {
-                            div.style.height = Math.floor(400/item) - 2 ;
-                            div.style.width = Math.floor(400/item) - 2;
+                            div.style.height = (400/item) - 2 ;
+                            div.style.width = (400/item) - 2;
                         }
                         else {
-                            break;
+                            continue;
                         }
 
                         container.appendChild(div);
-
-                        div.onmouseover = function() {
-                            div.style.backgroundColor = 'grey';
-                        }
+                        
+                        div.onmouseover = function () {
+                            div.style.backgroundColor = 'black';
+                        };
                     }
                 }
             }
@@ -59,7 +65,6 @@
             }
 
             function createNextGrid() {
-                choice = prompt("Enter the size of grid");
                 createGrid(choice);
             }
 
@@ -69,14 +74,28 @@
                     clickCounter++;
                 }
                 else {
-                    clearGrid(choice); //previous choice needed to clear the previous grid
+                    clearGrid(previousChoice); //previous choice needed to clear the previous grid
                 }
             }
 
+            function clearOnly(item) {
+                clear();
+                createGrid(item);
+            }
+
             btn1.addEventListener('click', () => {
-                clear(); //Clears grid on screen
-                createNextGrid(); //Creates a new grid based on user input
+                clearOnly(previousChoice); //Clears grid on screen
             });
+
+            btn2.addEventListener('click', () => {
+                choice = prompt("Enter the size of grid (1-21)");
+                if(choice > 21) {
+                    choice = prompt("Please Enter between 1 & 21)");
+                }
+                clear();
+                createNextGrid(); //Creates a new grid based on user input
+                previousChoice = choice;
+            })
 
             createInitialGrid(); //Creates 16X16 grid 
 
