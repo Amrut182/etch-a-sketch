@@ -3,7 +3,7 @@ h1 {
     
 }
 
-.Grid {
+#Grid {
     display: inline-grid;
     height: 23px;
     width: 23px;
