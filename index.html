@@ -13,16 +13,32 @@
         <div id="buttons">
             <button id="btn1">Clear</button>
             <button id="btn2">Make Grid</button>
+            <button id="btn3">RGB</button>
         </div>
         
         <script>
+            //Global variables
             const container = document.querySelector('#container');
             const btn1 = document.querySelector('#btn1');
+
+            const gridSize = 400;
             let choice = 16;
             let previousChoice = 16;
             let clickCounter = 0;
 
+            //Function Definitions
+            function turnOpaque(element) {
+                element.onmouseover = function () {
+                            element.style.backgroundColor = '#00203FFF';
+                };
+            }
 
+            function turnRGB(element) {
+                let randomColor = Math.floor(Math.random()*16777215).toString(16);
+                element.onmouseover = function () {
+                            element.style.backgroundColor = randomColor;
+                };
+            }
 
             function createGrid(item) {
                 for(let i = 0; i < item; i++) {
@@ -30,9 +46,9 @@
                         let div = document.createElement('div');
                         div.id = 'Grid';
 
-                        if(item < 22) {
-                            div.style.height = (400/item) - 2 ;
-                            div.style.width = (400/item) - 2;
+                        if(item < 22) { //grid gets messed up after 22
+                            div.style.height = (gridSize/item) - 2 ;    //taking into account of 1px border
+                            div.style.width = (gridSize/item) - 2;
                         }
                         else {
                             continue;
@@ -40,11 +56,32 @@
 
                         container.appendChild(div);
                         
-                        div.onmouseover = function () {
-                            // div.style.backgroundColor = '#5F4B8BFF';
-                            div.style.backgroundColor = '#00203FFF';
-                            // div.style.backgroundColor = '#0063B2FF';
-                        };
+                        //Event
+                        turnOpaque(div);
+
+                    }
+                }
+            }
+
+            function createGridRGB(item) {
+                for(let i = 0; i < item; i++) {
+                    for(let j = 0; j < item; j++) {
+                        let div = document.createElement('div');
+                        div.id = 'Grid';
+
+                        if(item < 22) { //grid gets messed up after 22
+                            div.style.height = (gridSize/item) - 2 ;    //taking into account of 1px border
+                            div.style.width = (gridSize/item) - 2;
+                        }
+                        else {
+                            continue;
+                        }
+
+                        container.appendChild(div);
+                        
+                        //Event
+                        turnRGB(div);
+
                     }
                 }
             }
@@ -80,25 +117,36 @@
                 }
             }
 
-            function clearOnly(item) {
+            function clearAndKeepGrid(item) {
                 clear();
                 createGrid(item);
-            }
+            } 
+            //End of Function Definitions
 
+            //Event listeners
             btn1.addEventListener('click', () => {
-                clearOnly(previousChoice); //Clears grid on screen
+                clearAndKeepGrid(previousChoice); //Clears grid on screen
             });
 
             btn2.addEventListener('click', () => {
-                choice = prompt("Enter the size of grid (1-21)");
+                choice = prompt("Enter the gridSize of grid (1-21)");
+
                 if(choice > 21) {
                     choice = prompt("Please Enter between 1 & 21");
                 }
+
                 clear();
                 createNextGrid(); //Creates a new grid based on user input
+                
                 previousChoice = choice;
-            })
+            });
 
+            btn3.addEventListener('click', () => {
+                clear();
+                createGridRGB(choice);
+            });
+
+            //Code
             createInitialGrid(); //Creates 16X16 grid 
 
         </script>
