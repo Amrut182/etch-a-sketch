@@ -1,15 +1,11 @@
 html {
     font-family: Arial, Helvetica, sans-serif;
-    /* background-color: #E69A8DFF; */
-    /* background-color: #ADEFD1FF; */
     background-color: #9CC3D5FF;
 }
 
 h1 {
     text-align: center;
-    /* color: #5F4B8BFF; */
     color: #00203FFF;
-    /* color: #0063B2FF */
 }
 
 #Grid {
@@ -24,12 +20,8 @@ h1 {
 button {
     margin: auto;
     background-color: #00203FFF;
-    /* background-color: #5F4B8BFF; */
-    /* background-color: #0063B2FF; */
     border: none;
     color: #9CC3D5FF;
-    /* color: #ADEFD1FF; */
-    /* color: #9CC3D5FF; */
     padding: 8px 10px;
     text-align: center;
     text-decoration: none;
