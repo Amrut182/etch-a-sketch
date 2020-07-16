@@ -89,14 +89,17 @@ function clearAndKeepGrid(item) {
 
 function promptUser() {
     choice = prompt("Enter the gridSize of grid (1-21)");
-
-    if(choice > 21) {
-        choice = prompt("Please Enter between 1 & 21");
+    console.log(choice);
+    if(choice == null) { //when user enters cancel
+        return choice;
+    }
+    if(choice > 21 || choice == 0) {
+        promptUser();
     }
     return choice;
 }
 //End of Function Definitions
-
+ 
 //Event listeners
 btn1.addEventListener('click', () => {
     clearAndKeepGrid(previousChoice); //Clears grid on screen
@@ -104,7 +107,9 @@ btn1.addEventListener('click', () => {
 
 btn2.addEventListener('click', () => {
     choice = promptUser();
-
+    if(choice == null) { //when user enters cancel, grid should remain like before 
+        return;
+    }
     clear();
     createGrid(choice); //Creates a new grid based on user input
     
